@@ -11,7 +11,12 @@ function App() {
     임시방편[0] = "여자 코트 추천";
     글제목변경(임시방편);
   }
-  // 커밋 테스트
+  
+  function 글정렬() {
+    let temp = [...글제목];
+    temp.sort();
+    글제목변경(temp);
+  }
 
   return (
     <div className="App">
@@ -20,7 +25,8 @@ function App() {
           이진강 개발 Blog
           </div>
       </div>
-      <button onClick={ () => 제목변경하는숙제() }>숙제버튼</button>
+      <button onClick={ 제목변경하는숙제 }>숙제버튼</button>
+      <button onClick={ 글정렬 }>정렬버튼</button>
       <div className="list">
         <h3> { 글제목[0] } <span onClick={ () => 따봉갯수변경(따봉갯수 + 1) }>👍</span> {따봉갯수} </h3>
         <p>2월 17일 발행</p>
