@@ -4,9 +4,17 @@ import './App.css';
 
 function App() {
   let [글제목, 글제목변경] = useState(["남자 코트 추천","선릉 맛집", "회사가기 싫은 이유"]);
-  let [따봉갯수, 따봉갯수변경] = useState(0);
+  let [따봉갯수, 따봉갯수변경] = useState([0,0,0]);
 
   let [modal, modal변경] = useState(false);
+
+  function 반복된UI() {
+    let 어레이 = [];
+    for (let i = 0; i < 3; i++) {
+      어레이.push(<div>안녕</div>);
+    }
+    return 어레이;
+  }
 
   function 제목변경하는숙제() {
     let 임시방편 = [...글제목];
@@ -19,6 +27,12 @@ function App() {
     temp.sort();
     글제목변경(temp);
   }
+  
+  function 따봉갯수변경함수(idx) {
+    let temp = [...따봉갯수];
+    temp[idx] += 1;
+    따봉갯수변경(temp);
+  }
 
   return (
     <div className="App">
@@ -29,25 +43,23 @@ function App() {
       </div>
       <button onClick={ 제목변경하는숙제 }>숙제버튼</button>
       <button onClick={ 글정렬 }>정렬버튼</button>
-      <div className="list">
-        <h3> { 글제목[0] } <span onClick={ () => 따봉갯수변경(따봉갯수 + 1) }>👍</span> {따봉갯수} </h3>
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3> { 글제목[1] } </h3>
-        <p>3월 10일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3 onClick = {() => modal변경(!modal)}> { 글제목[2] } </h3>
-        <p>지금 발행</p>
-        <hr/>
-      </div>
+
+      {
+        글제목.map( (title, idx) => {
+            return <div className="list">
+            <h3 onClick = {() => modal변경(!modal)}> { title } <span onClick={ () => 따봉갯수변경함수(idx) }>👍</span> {따봉갯수[idx]} </h3>
+            <p>지금 발행</p>
+            <hr/>
+          </div>
+          }
+        )
+      }
+
       { modal
         ? <Modal></Modal>
         : null
       }
+      { 반복된UI() }
 
     </div>
   );
