@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  let [글제목, 글제목변경] = useState(["남자 코트 추천","선릉 맛집", "회사가기 싫은 이유"]);
-  let [따봉갯수, 따봉갯수변경] = useState([0,0,0]);
-
-  let [modal, modal변경] = useState(false);
+  let [글제목, 글제목변경] = useState(["남자 코트 추천", "선릉 맛집", "회사가기 싫은 이유"]);
+  let [따봉갯수, 따봉갯수변경] = useState([0, 0, 0]);
+  let [modal, modal변경] = useState([false, false, false]);
 
   function 반복된UI() {
     let 어레이 = [];
@@ -34,6 +33,12 @@ function App() {
     따봉갯수변경(temp);
   }
 
+  function 모달변경함수(idx) {
+    let temp = [...modal];
+    temp[idx] = !temp[idx]
+    modal변경(temp);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -46,31 +51,40 @@ function App() {
 
       {
         글제목.map( (title, idx) => {
+          console.log(idx);
             return <div className="list">
-            <h3 onClick = {() => modal변경(!modal)}> { title } <span onClick={ () => 따봉갯수변경함수(idx) }>👍</span> {따봉갯수[idx]} </h3>
+            <h3> 
+              <span className="title" onClick = { () => 모달변경함수(idx) }>{ title }</span> 
+              <span onClick={ () => 따봉갯수변경함수(idx) }>👍 {따봉갯수[idx]}</span>
+            </h3>
             <p>지금 발행</p>
             <hr/>
+            <Modal 글의제목 = { title } 모달 = { modal[idx] }></Modal>
           </div>
           }
         )
-      }
-
-      { modal
-        ? <Modal></Modal>
-        : null
+        
       }
       { 반복된UI() }
 
     </div>
   );
 }
-function Modal() {
+function Modal(props) {
   return (
-    <div className="modal">
-      <h2>제목</h2>
-      <p>날짜</p>
-      <p>상세내용</p>
-    </div>
+    <>
+      { 
+        props.모달
+        ? 
+        <div className="modal">
+          <h2>{props.글의제목}</h2>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div>
+        : null
+      }
+    </>
+    
   )
 }
 
