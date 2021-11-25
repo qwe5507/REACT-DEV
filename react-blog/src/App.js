@@ -15,12 +15,6 @@ function App() {
   //   }
   //   return 어레이;
   // }
-
-  function 제목변경하는숙제() {
-    let 임시방편 = [...글제목];
-    임시방편[0] = "여자 코트 추천";
-    글제목변경(임시방편);
-  }
   
   function 글정렬() {
     let temp = [...글제목];
@@ -45,18 +39,22 @@ function App() {
     temp.unshift(글입력값);
     글제목변경(temp);
 
-    // let 따봉temp = [...따봉갯수변경];
-    
+    let 따봉temp = [...따봉갯수];
+    따봉temp.unshift(0);
+    따봉갯수변경(따봉temp);
+
+    let modalTemp = [...modal];
+    modalTemp.unshift(false);
+    modal변경(modalTemp);
   }
 
   return (
     <div className="App">
       <div className="black-nav">
-        <div style={{color: 'blue', fontSize: '30px'}}>
+        <div style={{color: 'yellow', fontSize: '30px'}}>
           이진강 개발 Blog
           </div>
       </div>
-      <button onClick={ 제목변경하는숙제 }>숙제버튼</button>
       <button onClick={ 글정렬 }>정렬버튼</button>
 
       {
