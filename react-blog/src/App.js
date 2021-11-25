@@ -59,7 +59,7 @@ function App() {
             </h3>
             <p>지금 발행</p>
             <hr/>
-            <Modal 글의제목 = { title } 모달 = { modal[idx] }></Modal>
+            <Modal 글의제목={title} 모달={modal[idx]}></Modal>
           </div>
           }
         )
