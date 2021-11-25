@@ -6,15 +6,15 @@ function App() {
   let [글제목, 글제목변경] = useState(["남자 코트 추천", "선릉 맛집", "회사가기 싫은 이유"]);
   let [따봉갯수, 따봉갯수변경] = useState([0, 0, 0]);
   let [modal, modal변경] = useState([false, false, false]);
-  let [입력값, 입력값변경] = useState("");
+  let [글입력값, 글입력값변경] = useState("");
 
-  function 반복된UI() {
-    let 어레이 = [];
-    for (let i = 0; i < 3; i++) {
-      어레이.push(<div>안녕</div>);
-    }
-    return 어레이;
-  }
+  // function 반복된UI() {
+  //   let 어레이 = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     어레이.push(<div>안녕</div>);
+  //   }
+  //   return 어레이;
+  // }
 
   function 제목변경하는숙제() {
     let 임시방편 = [...글제목];
@@ -36,8 +36,17 @@ function App() {
 
   function 모달변경함수(idx) {
     let temp = [...modal];
-    temp[idx] = !temp[idx]
+    temp[idx] = !temp[idx];
     modal변경(temp);
+  }
+
+  function 글저장() {
+    let temp = [...글제목];
+    temp.unshift(글입력값);
+    글제목변경(temp);
+
+    // let 따봉temp = [...따봉갯수변경];
+    
   }
 
   return (
@@ -67,9 +76,12 @@ function App() {
         )
         
       }
-      <input onChange={ e => 입력값변경(e.target.value) }></input>
-      <h4>{ 입력값 }</h4>
       {/* { 반복된UI() } */}
+
+      <div className="publish">
+        <input onChange={ e => 글입력값변경(e.target.value)}></input>
+        <button onClick={ 글저장 }>저장</button>
+      </div>
 
     </div>
   );
