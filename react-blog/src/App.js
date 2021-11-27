@@ -7,14 +7,6 @@ function App() {
   let [따봉갯수, 따봉갯수변경] = useState([0, 0, 0]);
   let [modal, modal변경] = useState([false, false, false]);
   let [글입력값, 글입력값변경] = useState("");
-
-  // function 반복된UI() {
-  //   let 어레이 = [];
-  //   for (let i = 0; i < 3; i++) {
-  //     어레이.push(<div>안녕</div>);
-  //   }
-  //   return 어레이;
-  // }
   
   function 글정렬() {
     let temp = [...글제목];
@@ -74,7 +66,6 @@ function App() {
         )
         
       }
-      {/* { 반복된UI() } */}
 
       <div className="publish">
         <input onChange={ e => 글입력값변경(e.target.value)}></input>
