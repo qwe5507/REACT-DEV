@@ -84,6 +84,7 @@ function App() {
     </div>
   );
 }
+
 function Modal(props) {
   return (
     <>
