@@ -7,6 +7,14 @@ function App() {
   let [따봉갯수, 따봉갯수변경] = useState([0, 0, 0]);
   let [modal, modal변경] = useState([false, false, false]);
   let [글입력값, 글입력값변경] = useState("");
+
+  // function 반복된UI() {
+  //   let 어레이 = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     어레이.push(<div>안녕</div>);
+  //   }
+  //   return 어레이;
+  // }
   
   function 글정렬() {
     let temp = [...글제목];
@@ -66,12 +74,13 @@ function App() {
         )
         
       }
+      {/* { 반복된UI() } */}
 
       <div className="publish">
         <input onChange={ e => 글입력값변경(e.target.value)}></input>
         <button onClick={ 글저장 }>저장</button>
       </div>
-
+        <Profile></Profile>
     </div>
   );
 }
@@ -92,6 +101,27 @@ function Modal(props) {
     </>
     
   )
+}
+
+class Profile extends React.Component {
+  constructor() {
+    super();
+    this.state = { name : "Lee Jin Kang", age : 30 };
+  }
+
+  changeName() {
+    this.setState( {name : "Lee Jin Soft"});
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>프로필입니다</h3>
+        <p>저는 { this.state.name } 입니다.</p>
+        <button onClick={ this.changeName.bind(this) }>이름 변경</button>
+      </div>
+    )
+  }
 }
 
 export default App;
