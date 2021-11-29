@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">Lee-Shop</Navbar.Brand>
@@ -39,24 +39,16 @@ function App() {
           <Button variant="success">자세히보기</Button>
         </p>
       </div>
-      
+
       <Container>
         <Row>
-          <Col md={4}>
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-            <h4>{shoes[0].title} & {shoes[0].price}</h4>
-            <p>{shoes[0].content}</p>
-          </Col>
-          <Col md={4}>
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" />
-            <h4>{shoes[1].title} & {shoes[1].price}</h4>
-            <p>{shoes[1].content}</p>
-          </Col>
-          <Col md={4}>
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" />
-            <h4>{shoes[2].title} & {shoes[2].price}</h4>
-            <p>{shoes[1].content}</p>
-          </Col>
+          {
+            shoes.map(function (data, idx) {
+              return (
+                <ShoeItem 신발={data} 인덱스={idx + 1}></ShoeItem>
+              )
+            })
+          }
         </Row>
       </Container>
     </div>
@@ -64,3 +56,13 @@ function App() {
 }
 
 export default App;
+
+function ShoeItem(props) {
+  return (
+    <Col md={4}>
+      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" />
+      <h4>{props.신발.title} & {props.신발.price}</h4>
+      <p>{props.신발.content}</p>
+    </Col>
+  )
+}
