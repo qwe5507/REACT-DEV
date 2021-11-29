@@ -1,10 +1,16 @@
 // import Button from '@restart/ui/esm/Button';
+import { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
 import './App.css';
+import data from './data.js';
 
 function App() {
+
+  let [shoes, shoes변경] = useState(data);
+
   return (
     <div className="App">
+      
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">Lee-Shop</Navbar.Brand>
@@ -38,18 +44,18 @@ function App() {
         <Row>
           <Col md={4}>
             <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-            <h4>상품명 & 가격</h4>
-            <p>상품정보</p>
+            <h4>{shoes[0].title} & {shoes[0].price}</h4>
+            <p>{shoes[0].content}</p>
           </Col>
           <Col md={4}>
             <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" />
-            <h4>상품명 & 가격</h4>
-            <p>상품정보</p>
+            <h4>{shoes[1].title} & {shoes[1].price}</h4>
+            <p>{shoes[1].content}</p>
           </Col>
           <Col md={4}>
             <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" />
-            <h4>상품명 & 가격</h4>
-            <p>상품정보</p>
+            <h4>{shoes[2].title} & {shoes[2].price}</h4>
+            <p>{shoes[1].content}</p>
           </Col>
         </Row>
       </Container>
