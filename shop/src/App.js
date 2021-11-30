@@ -5,6 +5,8 @@ import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-boo
 import './App.css';
 import data from './data.js';
 
+import { Link, Route, Switch } from 'react-router-dom';
+
 function App() {
 
   let [shoes] = useState(data);
@@ -31,6 +33,7 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <div className="background">
         <h1 style={{ color: 'forestgreen' }}>20% Season Off</h1>
         <p style={{ color: 'cornsilk' }}>
@@ -40,18 +43,36 @@ function App() {
           <Button variant="success">자세히보기</Button>
         </p>
       </div>
+      <Route exact path="/">
 
-      <Container>
-        <Row>
-          {
-            shoes.map(function (data, idx) {
-              return (
-                <ShoeItem 신발={data} 인덱스={idx + 1} key={idx}></ShoeItem>
-              )
-            })
-          }
-        </Row>
-      </Container>
+        <Container>
+          <Row>
+            {
+              shoes.map(function (data, idx) {
+                return (
+                  <ShoeItem 신발={data} 인덱스={idx + 1} key={idx}></ShoeItem>
+                )
+              })
+            }
+          </Row>
+        </Container>
+      </Route>
+      <Route exact path="/detail">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" alt="" />
+            </div>
+            <div className="col-md-6 mt-4">
+              <h4 className="pt-5">상품명</h4>
+              <p>상품설명</p>
+              <p>120000원</p>
+              <button className="btn btn-danger">주문하기</button>
+            </div>
+          </div>
+        </div>
+      </Route>
+
     </div>
   );
 }
@@ -61,7 +82,7 @@ export default App;
 function ShoeItem(props) {
   return (
     <Col md={4}>
-      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt=""/>
+      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt="" />
       <h4>{props.신발.title} & {props.신발.price}</h4>
       <p>{props.신발.content}</p>
     </Col>
