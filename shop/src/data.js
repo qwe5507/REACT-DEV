@@ -1,4 +1,4 @@
-export default [
+const data = [
     {
         id: 0,
         title: "White and Black",
@@ -23,3 +23,5 @@ export default [
         url: "https://codingapple1.github.io/shop/shoes3.jpg"
     }
 ]
+
+export default data;

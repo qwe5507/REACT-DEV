@@ -1,3 +1,4 @@
+
 // import Button from '@restart/ui/esm/Button';
 import { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
@@ -6,7 +7,7 @@ import data from './data.js';
 
 function App() {
 
-  let [shoes, shoes변경] = useState(data);
+  let [shoes] = useState(data);
 
   return (
     <div className="App">
@@ -45,7 +46,7 @@ function App() {
           {
             shoes.map(function (data, idx) {
               return (
-                <ShoeItem 신발={data} 인덱스={idx + 1}></ShoeItem>
+                <ShoeItem 신발={data} 인덱스={idx + 1} key={idx}></ShoeItem>
               )
             })
           }
@@ -60,7 +61,7 @@ export default App;
 function ShoeItem(props) {
   return (
     <Col md={4}>
-      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" />
+      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt=""/>
       <h4>{props.신발.title} & {props.신발.price}</h4>
       <p>{props.신발.content}</p>
     </Col>
