@@ -49,6 +49,12 @@ function App() {
       </div>
 
       <Switch>
+        <Route path="/detail">
+          <Detail></Detail>
+        </Route>
+        <Route path="/:id">
+          <div>아무거나 적었을때</div>
+        </Route>
         <Route path="/">
           <Container>
             <Row>
@@ -61,12 +67,6 @@ function App() {
               }
             </Row>
           </Container>
-        </Route>
-        <Route path="/detail">
-          <Detail></Detail>
-        </Route>
-        <Route path="/:id">
-          <div>아무거나 적었을때</div>
         </Route>
       </Switch>
 
