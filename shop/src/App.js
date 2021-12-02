@@ -10,7 +10,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, shoes변경] = useState(data);
   return (
     <div className="App">
 
@@ -49,13 +49,13 @@ function App() {
       </div>
 
       <Switch>
-        <Route path="/detail">
-          <Detail></Detail>
+        <Route exact path="/detail/:seq">
+          <Detail shoes={shoes}></Detail>
         </Route>
-        <Route path="/:id">
+        <Route exact path="/:id">
           <div>아무거나 적었을때</div>
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Container>
             <Row>
               {
