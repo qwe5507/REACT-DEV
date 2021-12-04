@@ -19,7 +19,6 @@ function Detail(props) {
 
     useEffect(()=>{
         let 타이머 = setTimeout(()=> {alertShow변경(true)}, 2000); 
-        clearTimeout(타이머);
         // return function 어쩌구() { 실행할 코드 }
     });
 
@@ -30,7 +29,7 @@ function Detail(props) {
                 <Title 색상={"blue"}>상세페이지</Title>
                 <Title className="orange">상세페이지</Title>
             </Box>
-            { alertShow ? 
+            { !alertShow ? 
             <div className="my-alert">
                 <p>재고가 얼마 남지 않았습니다.</p>
             </div>
