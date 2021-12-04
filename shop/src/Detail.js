@@ -15,22 +15,26 @@ function Detail(props) {
     let history = useHistory();
     let { seq } = useParams();
     let 찾은상품 = props.shoes.find(item => item.id === Number(seq));
-    let [alertShow, alertShow변경] = useState(false);
+    let [alertShow, alertShow변경] = useState(true);
+    let [inputData, inputData변경] = useState("");
 
-    useEffect(()=>{
-        let 타이머 = setTimeout(()=> {alertShow변경(true)}, 2000); 
-        // return function 어쩌구() { 실행할 코드 }
-    });
+    useEffect(() => {
+        let 타이머 = setTimeout(() => {alertShow변경(false)}, 2000);
+
+        return () => { clearTimeout(타이머) }
+    }, []);
 
     return (
         <div className="container">
             <Box>
-                <Title 색상={'red'}>상세페이지</Title>
-                <Title 색상={"blue"}>상세페이지</Title>
-                <Title className="orange">상세페이지</Title>
+                <Title 색상={'red'}>Detail</Title>
+                <Title 색상={"blue"}>Detail</Title>
+                <Title className="orange">Detail</Title>
             </Box>
-            { !alertShow ? 
-            <div className="my-alert">
+            { inputData }
+            <input onChange={ e => {inputData변경(e.target.value)} }></input>
+            { alertShow ? 
+            <div className="my-alert2">
                 <p>재고가 얼마 남지 않았습니다.</p>
             </div>
             : null
