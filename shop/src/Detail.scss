@@ -1,0 +1,38 @@
+@import './reset.scss';
+
+$메인칼라 : #ff0000;
+
+.orange {
+    color: $메인칼라;
+}
+
+// SASS 문법 3. nesting 문법
+// div {
+//     h4 {
+//         color: brown;
+//     }
+// }
+
+.my-alert p {
+    margin-bottom: 0;
+}
+
+//SASS 문법 5. @mixin / @include 문법
+@mixin 함수 {
+    background: #eeeeee;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+.my-alert {
+    @include 함수()
+}
+
+//SASS 문법 4. extends 문법
+.my-alert2 {
+    @extend .my-alert;
+    background: yellow;
+}
