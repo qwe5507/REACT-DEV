@@ -12,6 +12,13 @@ import { Link, Route, Switch } from 'react-router-dom';
 function App() {
 
   let [shoes, shoes변경] = useState(data);
+
+  function shoesAdd(addedShoes) {
+    let temp = [...shoes];
+    temp.push(...addedShoes);
+    shoes변경(temp);
+  }
+
   return (
     <div className="App">
 
@@ -63,19 +70,19 @@ function App() {
                 })
               }
             </Row>
+            <button className="btn btn-primary" onClick={() => {
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((result) => {
+                  shoesAdd(result.data);
+                })
+                .catch(() => {
+                  console.log("실패");
+                });
+            }}>더보기</button>
           </Container>
         </Route>
       </Switch>
-      <button className="btn btn-primary" onClick={()=>{
-        axios.get('https://codingapple1.github.io/shop/data2.json')
-        .then((result)=>{
-            console.log(result);
-            
-          })
-          .catch(()=>{  
-            console.log("실패");
-        });
-      }}>더보기</button>
+
 
     </div>
   );
