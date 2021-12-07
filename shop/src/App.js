@@ -12,12 +12,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 function App() {
 
   let [shoes, shoes변경] = useState(data);
-
-  function shoesAdd(addedShoes) {
-    let temp = [...shoes];
-    temp.push(...addedShoes);
-    shoes변경(temp);
-  }
+  let [loadingShow, loadingShow변경] = useState(false);
 
   return (
     <div className="App">
@@ -71,15 +66,26 @@ function App() {
               }
             </Row>
             <button className="btn btn-primary" onClick={() => {
+              loadingShow변경(true);
               axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((result) => {
-                  shoesAdd(result.data);
+                  loadingShow변경(false);
+                  shoes변경([...shoes, ...result.data]);
+                  
                 })
                 .catch(() => {
+                  loadingShow변경(false);
                   console.log("실패");
                 });
             }}>더보기</button>
           </Container>
+          
+          { loadingShow ?
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            : null
+          }
         </Route>
       </Switch>
 
