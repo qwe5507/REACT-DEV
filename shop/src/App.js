@@ -14,6 +14,7 @@ function App() {
   let [shoes, shoes변경] = useState(data);
   let [loadingShow, loadingShow변경] = useState(false);
   let [clickCount, clickCount변경] = useState(2);
+  let [재고, 재고변경] = useState([10, 11, 12, 13, 14, 15, 16, 17]);
 
   return (
     <div className="App">
@@ -50,7 +51,7 @@ function App() {
 
       <Switch>
         <Route exact path="/detail/:seq">
-          <Detail shoes={shoes}></Detail>
+          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
         </Route>
         <Route exact path="/:id">
           <div>아무거나 적었을때</div>

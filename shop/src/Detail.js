@@ -24,6 +24,13 @@ function Detail(props) {
         return () => { clearTimeout(타이머) }
     }, []);
 
+    function 재고변경() {
+        console.log(props.shoes);
+        let temp = [...props.재고];
+        temp[찾은상품.id] = temp[찾은상품.id] > 0 ? temp[찾은상품.id] - 1 : temp[찾은상품.id] ;
+        props.재고변경(temp);
+    }
+
     return (
         <div className="container">
             <Box>
@@ -41,20 +48,28 @@ function Detail(props) {
             }
             <div className="row">
                 <div className="col-md-6">
-                    <img src={ 찾은상품.url } width="100%" alt="" />
+                    <img src={ 찾은상품?.url } width="100%" alt="" />
                 </div>
                 <div className="col-md-6 mt-4">
-                    <h4 className="pt-5">{ 찾은상품.title }</h4>
-                    <p>{ 찾은상품.content }</p>
-                    <p>{ 찾은상품.price }</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <h4 className="pt-5">{ 찾은상품?.title }</h4>
+                    <p>{ 찾은상품?.content }</p>
+                    <p>{ 찾은상품?.price }</p>
+                    <Info 재고={props.재고} 인덱스={찾은상품?.id}></Info>
+                    <button className="btn btn-danger" onClick={() => { 재고변경()}}>주문하기</button>
                     <button className="btn btn-success" onClick={() => {
                         history.goBack(); 
                         // history.push('/');
                     }}>뒤로가기</button>
                 </div>
             </div>
+            
         </div>
+    )
+}
+
+function Info(props) {
+    return (
+        <p>재고 : {props.재고[props.인덱스]}</p>
     )
 }
 
