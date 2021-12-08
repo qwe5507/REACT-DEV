@@ -1,6 +1,6 @@
 
 // import Button from '@restart/ui/esm/Button';
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
@@ -8,6 +8,8 @@ import Detail from './Detail.js';
 import axios from 'axios';
 
 import { Link, Route, Switch } from 'react-router-dom';
+
+export let 재고context = React.createContext();
 
 function App() {
 
@@ -51,22 +53,26 @@ function App() {
 
       <Switch>
         <Route exact path="/detail/:seq">
-          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
+          </재고context.Provider>
         </Route>
         <Route exact path="/:id">
           <div>아무거나 적었을때</div>
         </Route>
         <Route exact path="/">
           <Container>
-            <Row>
-              {
-                shoes.map(function (data, idx) {
-                  return (
-                    <ShoeItem 신발={data} 인덱스={idx + 1} key={idx}></ShoeItem>
-                  )
-                })
-              }
-            </Row>
+            <재고context.Provider value={재고}>
+              <Row>
+                {
+                  shoes.map(function (data, idx) {
+                    return (
+                      <ShoeItem 신발={data} 인덱스={idx + 1} key={idx}></ShoeItem>
+                    )
+                  })
+                }
+              </Row>
+            </재고context.Provider>
             {clickCount < 4 ?
               <button className="btn btn-primary" onClick={() => {
                 loadingShow변경(true);
@@ -100,14 +106,22 @@ function App() {
   );
 }
 
-export default App;
-
 function ShoeItem(props) {
   return (
     <Col md={4}>
       <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt="" />
       <h4>{props.신발.title} & {props.신발.price}</h4>
       <p>{props.신발.content}</p>
+      <Test 인덱스={props.인덱스}></Test>
     </Col>
   )
 }
+
+function Test(props) {
+  let 재고 = useContext(재고context);
+  return (
+    <p>재고 : {재고[props.인덱스]}</p>
+  )
+}
+
+export default App;
