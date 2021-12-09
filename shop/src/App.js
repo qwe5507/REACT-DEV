@@ -6,6 +6,7 @@ import './App.css';
 import data from './data.js';
 import Detail from './Detail.js';
 import axios from 'axios';
+import Cart from './Cart.js';
 
 import { Link, Route, Switch } from 'react-router-dom';
 
@@ -56,6 +57,9 @@ function App() {
           <재고context.Provider value={재고}>
             <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
           </재고context.Provider>
+        </Route>
+        <Route path="/cart">
+          <Cart></Cart>
         </Route>
         <Route exact path="/:id">
           <div>아무거나 적었을때</div>
