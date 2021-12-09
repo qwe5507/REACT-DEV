@@ -14,11 +14,12 @@ function Cart(props) {
         </tr>
         {props.redux상품.map((data, idx) => {
           return (
-            <tr>
+            <tr key={idx}>
               <td>{data.id}</td>
-              <td>{data.title}</td>
-              <td>{data.price}</td>
-              <td>{data.content}</td>
+              <td>{data.name}</td>
+              <td>{data.quan}</td>
+              <td><button onClick={()=>{props.dispatch({ type : "수량증가"})}}>+</button>
+                  <button onClick={()=>{props.dispatch({ type : "수량감소"})}}>-</button></td>
             </tr>
           )
         })}
