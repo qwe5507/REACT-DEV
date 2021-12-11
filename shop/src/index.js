@@ -6,11 +6,20 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
+
+let alert초기값 = true;
+
+function reducer3(state = alert초기값, 액션) {
+  if (액션.type === "ui닫기") {
+    return false;
+  }
+  return state;
+}
 
 let 기본state = [
   { id: 0, name: "멋진신발", quan: 2,},
-  { id: 1, name: "멋진신발2", quan: 1,} 
+  { id: 1, name: "멋진신발2", quan: 1,},
 ];
 
 function reducer(state = 기본state, 액션) {
@@ -27,7 +36,7 @@ function reducer(state = 기본state, 액션) {
   }
 }
 
-let store = createStore(reducer);
+let store = createStore(combineReducers({reducer, reducer3}));
 
 ReactDOM.render(
   <React.StrictMode>
