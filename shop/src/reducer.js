@@ -6,7 +6,11 @@ let 기본state = [
 ];
 
 export function reducer(state = 기본state, 액션) {
-    if (액션.type === "수량증가") {
+    if (액션.type === "항목추가") {
+      let copy = [...state];
+      copy.push(액션.payload);
+      return copy;
+    } else if (액션.type === "수량증가") {
       let copy = [...state];
       copy[0].quan += 1;
       return copy;

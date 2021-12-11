@@ -5,6 +5,7 @@ import './Detail.scss';
 import { 재고context } from './App.js';
 import { Nav } from 'react-bootstrap';
 import {CSSTransition} from 'react-transition-group';
+import { connect } from 'react-redux';
 
 let Box = styled.div`
     padding : 20px;
@@ -61,7 +62,11 @@ function Detail(props) {
                     <p>{찾은상품?.price}</p>
 
                     <Info 재고={context재고Data} 인덱스={찾은상품?.id}></Info>
-                    <button className="btn btn-danger" onClick={() => { 재고변경() }}>주문하기</button>
+                    <button className="btn btn-danger" onClick={() => { 
+                        재고변경();
+                        props.dispatch({ type: "항목추가", payload : { id: 찾은상품.id, name: 찾은상품.title, quan: props.재고[찾은상품.id] }})
+                        history.push('/cart');
+                        }}>주문하기</button>
                     <button className="btn btn-success" onClick={() => {
                         history.goBack();
                         // history.push('/');
@@ -100,4 +105,11 @@ function Info(props) {
     )
 }
 
-export default Detail;
+function state를props화(state) {
+    return {
+      redux상품: state.reducer,
+      alert상태: state.reducer3
+    }
+  }
+  
+  export default connect(state를props화)(Detail);
