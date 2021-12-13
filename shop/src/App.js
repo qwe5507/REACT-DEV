@@ -8,7 +8,7 @@ import Detail from './Detail.js';
 import axios from 'axios';
 import Cart from './Cart.js';
 
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
 
 export let 재고context = React.createContext();
 
@@ -111,12 +111,15 @@ function App() {
 }
 
 function ShoeItem(props) {
+  let history = useHistory();
+
   return (
     <Col md={4}>
-      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt="" />
+      <img src={`https://codingapple1.github.io/shop/shoes${props.인덱스}.jpg`} width="100%" alt=""
+        onClick={() => { history.push(`/detail/${props.신발.id}`) }} />
       <h4>{props.신발.title} & {props.신발.price}</h4>
       <p>{props.신발.content}</p>
-      <Test 인덱스={props.인덱스}></Test>
+      <Test 인덱스={props.신발.id}></Test>
     </Col>
   )
 }

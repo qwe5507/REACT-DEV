@@ -54,7 +54,7 @@ function Detail(props) {
             }
             <div className="row">
                 <div className="col-md-6">
-                    <img src={찾은상품?.url} width="100%" alt="" />
+                    <img src={`https://codingapple1.github.io/shop/shoes${찾은상품.id + 1}.jpg`} width="100%" alt="" />
                 </div>
                 <div className="col-md-6 mt-4">
                     <h4 className="pt-5">{찾은상품?.title}</h4>
