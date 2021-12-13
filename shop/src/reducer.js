@@ -8,10 +8,10 @@ let 기본state = [
 export function reducer(state = 기본state, 액션) {
   let id = 액션.상품번호;
     if (액션.type === "항목추가") {
-      let 찾은인덱스 = state?.findIndex(item => item.id === Number(액션.payload.id));
+      let 찾은인덱스 = state?.findIndex(item => item.id === 액션.payload.id);
       if (찾은인덱스 >= 0) {
         let copy = [...state];
-        copy[찾은인덱스]++;
+        copy[찾은인덱스].quan++;
         return copy;
       } else {
         let copy = [...state];

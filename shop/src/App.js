@@ -83,7 +83,12 @@ function App() {
                 axios.get(`https://codingapple1.github.io/shop/data${clickCount}.json`)
                   .then((result) => {
                     loadingShow변경(false);
-                    shoes변경([...shoes, ...result.data]);
+                    let temp = [...result.data];
+                    temp.map(data => {
+                      data.quan = 10; 
+                      return data;
+                    })
+                    shoes변경([...shoes, ...temp]);
                     clickCount변경(clickCount + 1);
                   })
                   .catch(() => {
