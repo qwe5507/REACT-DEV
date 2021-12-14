@@ -21,7 +21,7 @@ function Cart(props) {
             <tr key={idx}>
               <td>{data.id}</td>
               <td>{data.name}</td>
-              <td>{data.quan}</td>
+              <td>{data?.surang}</td>
               <td><button onClick={() => { dispatch({ type: "수량증가" , 상품번호 : data.id }) }}>+</button>
                 <button onClick={() => { dispatch({ type: "수량감소" , 상품번호 : data.id }) }}>-</button></td>
             </tr>
