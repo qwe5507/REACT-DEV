@@ -7,6 +7,7 @@ import data from './data.js';
 import Detail from './Detail.js';
 import axios from 'axios';
 import Cart from './Cart.js';
+import useDidMountEffect from './useDidMountEffect.js';
 
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 
@@ -23,11 +24,17 @@ function App() {
   let [count, setCount] = useState(0);
   let [age, setAge] = useState(20);
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   if ( count != 0 && count < 3 ) {
+  //     setAge(age+1)
+  //   }
+  // }, [count]) 
+  //첫 랜더링 막는 useEffect
+  useDidMountEffect(() => {
     if ( count != 0 && count < 3 ) {
       setAge(age+1)
     }
-  }, [count]) 
+  }, [count]);
 
   return (
     <div className="App">
