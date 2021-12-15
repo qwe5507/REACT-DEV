@@ -29,6 +29,7 @@ function App() {
   //     setAge(age+1)
   //   }
   // }, [count]) 
+
   //첫 랜더링 막는 useEffect
   useDidMountEffect(() => {
     if ( count != 0 && count < 3 ) {
@@ -72,7 +73,7 @@ function App() {
           <h2>비동기테스트</h2>
           <div>안녕하십니까 전 {age}</div>
           <button onClick={() => {
-
+            //state변경 함수는 비동기처리된다. (동기동작보다 맨 마지막에 실행됨)
             setCount(count + 1);
 
           }}>누르면한살먹기</button>
