@@ -1,6 +1,6 @@
 
 // import Button from '@restart/ui/esm/Button';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
@@ -18,6 +18,16 @@ function App() {
   let [loadingShow, loadingShow변경] = useState(false);
   let [clickCount, clickCount변경] = useState(2);
   let [재고, 재고변경] = useState([10, 11, 12, 13, 14, 15, 16, 17]);
+
+  //비동기 테스트
+  let [count, setCount] = useState(0);
+  let [age, setAge] = useState(20);
+
+  useEffect(()=>{
+    if ( count != 0 && count < 3 ) {
+      setAge(age+1)
+    }
+  }, [count]) 
 
   return (
     <div className="App">
@@ -51,7 +61,15 @@ function App() {
           <Button variant="success">자세히보기</Button>
         </p>
       </div>
+      <div>
+          <h2>비동기테스트</h2>
+          <div>안녕하십니까 전 {age}</div>
+          <button onClick={() => {
 
+            setCount(count + 1);
+
+          }}>누르면한살먹기</button>
+        </div>
       <Switch>
         <Route exact path="/detail/:seq">
           <재고context.Provider value={재고}>
@@ -85,7 +103,7 @@ function App() {
                     loadingShow변경(false);
                     let temp = [...result.data];
                     temp.map(data => {
-                      data.quan = 10; 
+                      data.quan = 10;
                       return data;
                     })
                     shoes변경([...shoes, ...temp]);
