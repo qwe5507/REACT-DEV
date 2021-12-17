@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { connect, useDispatch, useSelector,  } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 function Cart(props) {
 
@@ -15,6 +16,7 @@ function Cart(props) {
           <th>상품명</th>
           <th>수량</th>
           <th>내용</th>
+          <th>-</th>
         </tr>
         {state.reducer?.map((data, idx) => {
           return (
@@ -24,6 +26,11 @@ function Cart(props) {
               <td>{data?.surang}</td>
               <td><button onClick={() => { dispatch({ type: "수량증가" , 상품번호 : data.id }) }}>+</button>
                 <button onClick={() => { dispatch({ type: "수량감소" , 상품번호 : data.id }) }}>-</button></td>
+              <td>
+              <Button variant="danger active" onClick={() => {
+                dispatch({ type: "항목삭제" , 상품번호 : data.id })
+              }}>x</Button>
+              </td>
             </tr>
           )
         })}

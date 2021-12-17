@@ -21,6 +21,12 @@ export function reducer(state = 기본state, 액션) {
         return copy;
       }
 
+    } else if (액션.type === "항목삭제") {
+      let 찾은idx = state?.findIndex(item => item.id === id);
+      let copy = [...state];
+      copy.splice(찾은idx, 1);
+      return copy;
+      
     } else if (액션.type === "수량증가") {
       let 찾은idx = state?.findIndex(item => item.id === id);
       let copy = [...state];
@@ -37,6 +43,7 @@ export function reducer(state = 기본state, 액션) {
       return state;
     }
   }
+
 export function reducer3(state = alert초기값, 액션) {
     if (액션.type === "ui닫기") {
       return false;
