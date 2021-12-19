@@ -1,7 +1,7 @@
 
 // import Button from '@restart/ui/esm/Button';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import React, { useState, useContext, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useContext, lazy, Suspense } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
@@ -35,7 +35,7 @@ function App() {
 
   //첫 랜더링 막는 useEffect
   useDidMountEffect(() => {
-    if ( count != 0 && count < 3 ) {
+    if ( count !== 0 && count < 3 ) {
       setAge(age+1)
     }
   }, [count]);
