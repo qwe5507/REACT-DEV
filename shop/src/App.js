@@ -1,15 +1,18 @@
 
 // import Button from '@restart/ui/esm/Button';
-import React, { useState, useContext, useEffect } from 'react';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import React, { useState, useContext, useEffect, lazy, Suspense } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Button, Row, Col } from 'react-bootstrap';
 import './App.css';
 import data from './data.js';
-import Detail from './Detail.js';
+
+// import Detail from './Detail.js';
+
 import axios from 'axios';
 import Cart from './Cart.js';
 import useDidMountEffect from './useDidMountEffect.js';
 
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
+let Detail = lazy(() => { return import('./Detail.js')});
 
 export let 재고context = React.createContext();
 
@@ -81,7 +84,9 @@ function App() {
       <Switch>
         <Route exact path="/detail/:seq">
           <재고context.Provider value={재고}>
-            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
+            <Suspense fallback={ <div>로딩중이에요 ..</div> }>
+              <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
+            </Suspense>
           </재고context.Provider>
         </Route>
         <Route path="/cart">
