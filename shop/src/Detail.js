@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
 import { 재고context } from './App.js';
-import { Nav } from 'react-bootstrap';
+import { Nav, Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import {CSSTransition} from 'react-transition-group';
 import { connect } from 'react-redux';
 
@@ -25,6 +25,8 @@ function Detail(props) {
     let [누른탭, 누른탭변경] = useState(0);
     let [스위치, 스위치변경] = useState(false);
 
+    let [최근상품, 최근상품변경] = useState([]);
+
     useEffect(() => {
         let 타이머 = setTimeout(() => { alertShow변경(false) }, 2000);
         return () => { clearTimeout(타이머) }
@@ -44,6 +46,7 @@ function Detail(props) {
             temp.unshift(seq);
         }
         localStorage.setItem('최근본상품', JSON.stringify(temp.slice(0, 3)));
+        최근상품변경(temp.slice(0, 3));
     }, [])
 
     function 재고변경() {
@@ -86,6 +89,19 @@ function Detail(props) {
                         history.goBack();
                         // history.push('/');
                     }}>뒤로가기</button>
+                </div>
+                
+                {/* <Card> */}
+                <div style={{marginTop: 10}}>
+                {최근상품.map(function(data, idx) {
+                    return (
+                        
+                        <img class="col-md-4" style={{ borderStyle: 'dotted' }} src={`https://codingapple1.github.io/shop/shoes${Number(data) + 1}.jpg`} />
+                        
+                    )
+                })
+                }
+                <p>최근 본상품</p>
                 </div>
 
                 <Nav className="mt-5" variant="tabs" defaultActiveKey="/home">
