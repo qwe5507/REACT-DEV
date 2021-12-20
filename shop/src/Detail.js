@@ -27,7 +27,10 @@ function Detail(props) {
 
     useEffect(() => {
         let 타이머 = setTimeout(() => { alertShow변경(false) }, 2000);
+        return () => { clearTimeout(타이머) }
+    }, []);
 
+    useEffect(() => {
         let 최근본상품 = localStorage.getItem("최근본상품");
         
         let temp = 최근본상품 ? JSON.parse(최근본상품) : []; 
@@ -35,15 +38,13 @@ function Detail(props) {
         let idx = temp.findIndex(data => data == seq);
         
         if (idx == -1) {
-            temp.push(seq);
+            temp.unshift(seq);
         } else {
             temp.splice(idx, 1);
-            temp.push(seq);
+            temp.unshift(seq);
         }
-        localStorage.setItem('최근본상품', JSON.stringify(temp));
-
-        return () => { clearTimeout(타이머) }
-    }, []);
+        localStorage.setItem('최근본상품', JSON.stringify(temp.slice(0, 3)));
+    }, [])
 
     function 재고변경() {
         let temp = [...props.재고];
